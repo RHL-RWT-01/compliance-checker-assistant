@@ -1,12 +1,11 @@
+import type { Request, RequestHandler, Response } from "express";
 import express from "express";
 import OpenAI from "openai";
 import Supermemory from "supermemory";
-import type { Request, RequestHandler, Response } from "express";
-import e from "express";
 
 const router = express.Router();
 const client = new Supermemory({
-  apiKey: process.env["SUPERMEMORY_API_KEY"], // This is the default and can be omitted
+  apiKey: process.env["SUPERMEMORY_API_KEY"], 
 });
 
 const openai = new OpenAI({
@@ -20,7 +19,7 @@ const openai = new OpenAI({
 router.get("/connect", async (req: Request, res: Response) => {
   try {
     const connection = await client.connections.create("google-drive", {
-      redirectUrl: "http://localhost:5173",
+      redirectUrl: "http://localhost:5174",
     });
     res.status(201).json({
       message: "authenticate",
